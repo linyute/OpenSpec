@@ -745,7 +745,7 @@ spec-driven 解析自：套件
 **Schema 優先順序：**
 
 1. 專案：`openspec/schemas/<name>/`
-2. 使用者：`~/.openspec/schemas/<name>/`
+2. 使用者：`~/.local/share/openspec/schemas/<name>/`
 3. 套件：內建 schema
 
 ---

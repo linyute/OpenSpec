@@ -1,184 +1,340 @@
-# 自訂
+# 客製化
 
-OpenSpec 提供兩個層級的自訂：
+OpenSpec 提供三種層級的客製化：
 
-1. **專案設定 (Project Config)** (`openspec/config.yaml`) - 輕量級的每個專案自訂，用於預設 schema、共用背景資訊和每個成品的規則。
-2. **Schema 覆寫 (Schema Overrides)** - 透過 XDG 目錄進行完整的 schema 和範本自訂。
+| 層級                               | 功能                               | 適用對象           |
+| ---------------------------------- | ---------------------------------- | ------------------ |
+| **專案配置 (Project Config)**      | 設定預設值，注入上下文/規則        | 大多數團隊         |
+| **自定義 Schema (Custom Schemas)** | 定義您自己的工作流成品 (artifacts) | 具有獨特流程的團隊 |
+| **全域覆寫 (Global Overrides)**    | 在所有專案中共享 Schema            | 進階使用者         |
 
 ---
 
-## 專案設定
+## 專案配置 (Project Configuration)
 
-`openspec/config.yaml` 檔案提供了一個輕量級的自訂層，讓團隊可以：
+`openspec/config.yaml` 檔案是為您的團隊客製化 OpenSpec 最簡單的方式。它讓您可以：
 
-- **設定預設 schema** - 新的變更會自動使用此 schema，而不需要每次都指定 `--schema`。
-- **注入專案背景資訊** - 在建立任何成品時顯示給 AI 的共用背景資訊（技術堆疊、慣例）。
-- **新增每個成品的規則** - 僅套用於特定成品（例如：提案、規格）的自訂規則。
+- **設定預設 Schema** - 在每個指令中跳過 `--schema`
+- **注入專案上下文 (context)** - 讓 AI 查看您的技術棧、慣例等。
+- **添加單個成品的規則** - 為特定成品自定義規則
 
-### 建立設定
-
-您可以透過互動式設定來建立設定：
+### 快速設定
 
 ```bash
 openspec init
 ```
 
-或者手動建立：
+這將引導您以互動方式建立配置。或者也可以手動建立一個：
 
 ```yaml
 # openspec/config.yaml
 schema: spec-driven
 
 context: |
-  技術堆疊：TypeScript, React, Node.js, PostgreSQL
-  API 風格：RESTful，記錄在 docs/api.md 中
+  技術棧：TypeScript, React, Node.js, PostgreSQL
+  API 風格：RESTful，記錄在 docs/api.md
   測試：Jest + React Testing Library
-  我們重視所有公共 API 的向後相容性
+  我們重視所有公開 API 的回溯相容性 (backwards compatibility)
 
 rules:
   proposal:
-    - 包含回滾計畫
+    - 包含回滾計畫 (rollback plan)
     - 識別受影響的團隊
   specs:
     - 使用 Given/When/Then 格式
     - 在發明新模式之前參考現有模式
 ```
 
-### 設定如何影響工作流程
+### 運作原理
 
-**預設 schema 選擇：**
+**預設 Schema：**
 
 ```bash
-# 無設定：必須指定 schema
+# 無配置時
 openspec new change my-feature --schema spec-driven
 
-# 有設定：schema 是自動的
+# 有配置時 - Schema 會自動套用
 openspec new change my-feature
 ```
 
-**背景資訊和規則注入：**
+**上下文與規則注入：**
 
-產生成品的指示時，會注入背景資訊和規則：
+在產生任何成品時，您的上下文與規則會被注入到 AI 提示詞 (prompt) 中：
 
 ```xml
 <context>
-技術堆疊：TypeScript, React, Node.js, PostgreSQL
-API 風格：RESTful，記錄在 docs/api.md 中
+技術棧：TypeScript, React, Node.js, PostgreSQL
 ...
 </context>
 
 <rules>
-- 包含回滾計畫
+- 包含回滾計畫 (rollback plan)
 - 識別受影響的團隊
 </rules>
 
 <template>
-[Schema 內建的範本]
+[Schema 內建範本]
 </template>
 ```
 
-- **背景資訊 (context)** 出現在所有成品中。
-- **規則 (rules)** 僅出現在相符的成品中。
+- **上下文 (Context)** 會出現在「所有」成品中
+- **規則 (Rules)** 「僅」會出現在相符的成品中
 
-### Schema 解析優先順序
+### Schema 解析順序
 
-1. CLI 旗標獲勝：`openspec new change feature --schema tdd`
-2. 變更 Metadata（如果 `.openspec.yaml` 指定了 schema）
-3. 專案設定 (`openspec/config.yaml`)
-4. 預設 schema (`spec-driven`)
+當 OpenSpec 需要一個 Schema 時，它會按照以下順序檢查：
 
-### 錯誤處理
+1. CLI 旗標：`--schema tdd`
+2. 變更 Metadata (`變更資料夾中的 .openspec.yaml`)
+3. 專案配置 (`openspec/config.yaml`)
+4. 預設值 (`spec-driven`)
 
-設定提供了適當的錯誤處理：
+---
+
+## 自定義 Schema (Custom Schemas)
+
+當專案配置不足以滿足需求時，您可以建立具有完全自定義工作流的專案 Schema。自定義 Schema 存放在專案的 `openspec/schemas/` 目錄中，並隨您的程式碼進行版本控制。
+
+```text
+your-project/
+├── openspec/
+│   ├── config.yaml        # 專案配置
+│   ├── schemas/           # 自定義 Schema 存放於此
+│   │   └── my-workflow/
+│   │       ├── schema.yaml
+│   │       └── templates/
+│   └── changes/           # 您的變更
+└── src/
+```
+
+### 複製現有 Schema
+
+客製化最快的方法是複製 (fork) 一個內建的 Schema：
 
 ```bash
-# schema 名稱拼字錯誤 - 顯示建議
-# Schema 'spec-drivne' not found
-# Did you mean: spec-driven (built-in)
+openspec schema fork spec-driven my-workflow
+```
 
-# 規則中不明的成品 ID - 警告但繼續執行
-# ⚠️ Unknown artifact ID in rules: "testplan". Valid IDs for schema "spec-driven": ...
+這會將整個 `spec-driven` Schema 複製到 `openspec/schemas/my-workflow/`，在那裡您可以自由編輯。
+
+**您將獲得：**
+
+```text
+openspec/schemas/my-workflow/
+├── schema.yaml           # 工作流定義
+└── templates/
+    ├── proposal.md       # 提案成品的範本
+    ├── spec.md           # 規格說明的範本
+    ├── design.md         # 設計文件的範本
+    └── tasks.md          # 任務清單的範本
+```
+
+現在編輯 `schema.yaml` 以更改工作流，或編輯範本以更改 AI 產生的內容。
+
+### 從頭開始建立 Schema
+
+對於一個完全全新的工作流：
+
+```bash
+# 互動式
+openspec schema init research-first
+
+# 非互動式
+openspec schema init tdd-lite \
+  --description "輕量級 TDD 工作流" \
+  --artifacts "spec,tests,impl" \
+  --default
+```
+
+### Schema 結構
+
+Schema 定義了工作流中的成品以及它們彼此之間的依賴關係：
+
+```yaml
+# openspec/schemas/my-workflow/schema.yaml
+name: my-workflow
+version: 1
+description: 我團隊的自定義工作流
+
+artifacts:
+  - id: proposal
+    generates: proposal.md
+    description: 初始提案文件
+    template: proposal.md
+    instruction: |
+      建立一個提案，解釋「為什麼」需要這項變更。
+      重點在於問題，而非解決方案。
+    requires: []
+
+  - id: design
+    generates: design.md
+    description: 技術設計
+    template: design.md
+    instruction: |
+      建立一份解釋「如何」實作的設計文件。
+    requires:
+      - proposal    # 在提案存在之前無法建立設計
+
+  - id: tasks
+    generates: tasks.md
+    description: 實作檢核表
+    template: tasks.md
+    requires:
+      - design
+
+apply:
+  requires: [tasks]
+  tracks: tasks.md
+```
+
+**關鍵欄位：**
+
+| 欄位          | 用途                                           |
+| ------------- | ---------------------------------------------- |
+| `id`          | 唯一識別碼，用於指令與規則中                   |
+| `generates`   | 輸出檔案名稱 (支援 glob，例如 `specs/**/*.md`) |
+| `template`    | `templates/` 目錄中的範本檔案                  |
+| `instruction` | 建立此成品時的 AI 指示                         |
+| `requires`    | 依賴關係 - 哪些成品必須先存在                  |
+
+### 範本 (Templates)
+
+範本是引導 AI 的 Markdown 檔案。在建立該成品時，它們會被注入到提示詞中。
+
+```markdown
+<!-- templates/proposal.md -->
+## 為什麼 (Why)
+
+<!-- 解釋此變更的動機。這解決了什麼問題？ -->
+
+## 哪些變更 (What Changes)
+
+<!-- 描述將會變更的內容。具體說明新的功能或修改。 -->
+
+## 影響 (Impact)
+
+<!-- 受影響的程式碼、API、依賴項、系統 -->
+```
+
+範本可以包含：
+- AI 應填寫的章節標題
+- 帶有 AI 引導資訊的 HTML 註解
+- 顯示預期結構的範例格式
+
+### 驗證您的 Schema
+
+在使用自定義 Schema 之前，請先驗證它：
+
+```bash
+openspec schema validate my-workflow
+```
+
+這會檢查：
+- `schema.yaml` 語法是否正確
+- 所有引用的範本是否都存在
+- 是否有無循環依賴
+- 成品 ID 是否有效
+
+### 使用您的自定義 Schema
+
+建立完成後，透過以下方式使用您的 Schema：
+
+```bash
+# 在指令中指定
+openspec new change feature --schema my-workflow
+
+# 或在 config.yaml 中設定為預設值
+schema: my-workflow
+```
+
+### 除錯 Schema 解析
+
+不確定正在使用哪個 Schema？使用以下指令檢查：
+
+```bash
+# 查看特定 Schema 是從何處解析的
+openspec schema which my-workflow
+
+# 列出所有可用的 Schema
+openspec schema which --all
+```
+
+輸出會顯示它是來自您的專案、使用者目錄還是套件：
+
+```text
+Schema: my-workflow
+Source: project
+Path: /path/to/project/openspec/schemas/my-workflow
 ```
 
 ---
 
-## Schema 覆寫
+> **注意：** OpenSpec 也支援位於 `~/.local/share/openspec/schemas/` 的使用者層級 Schema，以便在不同專案之間共享，但建議使用 `openspec/schemas/` 中的專案層級 Schema，因為它們會隨您的程式碼進行版本控制。
 
-對於更深層次的自訂，您可以覆寫整個 schema 或範本。
+---
 
-### Schema 解析如何運作
+## 範例
 
-OpenSpec 使用遵循 XDG 基本目錄規格的 2 層級 schema 解析系統：
-
-1. **使用者覆寫**：`${XDG_DATA_HOME}/openspec/schemas/<name>/`
-2. **套件內建**：`<npm-package>/schemas/<name>/`
-
-請求 schema 時，解析器會先檢查使用者目錄。如果找到，則使用該整個 schema 目錄。否則，它將回退到套件的內建 schema。
-
-### 覆寫目錄
-
-| 平台 | 路徑 |
-|----------|------|
-| macOS/Linux | `~/.local/share/openspec/schemas/` |
-| Windows | `%LOCALAPPDATA%\[openspec](https://github.com/openspec/openspec)\schemas\` |
-| 全部 (如果已設定) | `$XDG_DATA_HOME/openspec/schemas/` |
-
-### 手動 Schema 覆寫
-
-要覆寫預設的 `spec-driven` schema：
-
-**1. 建立目錄結構：**
-
-```bash
-# macOS/Linux
-mkdir -p ~/.local/share/openspec/schemas/spec-driven/templates
-```
-
-**2. 尋找並複製預設 schema 檔案：**
-
-```bash
-# 尋找套件位置
-npm list -g openspec --parseable
-
-# 從套件的 schemas/ 目錄複製檔案
-cp <package-path>/schemas/spec-driven/schema.yaml ~/.local/share/openspec/schemas/spec-driven/
-cp <package-path>/schemas/spec-driven/templates/*.md ~/.local/share/openspec/schemas/spec-driven/templates/
-```
-
-**3. 修改複製的檔案：**
-
-編輯 `schema.yaml` 以更改工作流程結構：
+### 最小 TDD 工作流
 
 ```yaml
-name: spec-driven
+# openspec/schemas/tdd-minimal/schema.yaml
+name: tdd-minimal
 version: 1
-description: 我的自訂工作流程
+description: 先撰寫測試，然後實作
+
 artifacts:
-  - id: proposal
-    generates: proposal.md
-    description: 初始提案
-    template: proposal.md
+  - id: tests
+    generates: tests.md
+    description: 要實作的測試用例
+    template: tests.md
+    instruction: |
+      為此功能定義測試用例。
+      每個測試都應是明確的 Given/When/Then 場景。
     requires: []
-  # 新增、移除或修改成品...
+
+  - id: impl
+    generates: implementation.md
+    description: 實作說明
+    template: impl.md
+    requires: [tests]
+
+apply:
+  requires: [impl]
+  tracks: implementation.md
 ```
 
-編輯 `templates/` 中的範本以自訂內容引導。
+### 添加評論 (Review) 成品
 
-### 目前的限制
+複製預設 Schema 並添加評論步驟：
 
-| 問題 | 影響 |
-|-------|--------|
-| **路徑發現** | 使用者必須瞭解 XDG 慣例和平台特定路徑 |
-| **套件位置** | 尋找 npm 套件路徑因安裝方法而異 |
-| **無腳手架 (scaffolding)** | 使用者必須手動建立目錄並複製檔案 |
-| **無驗證** | 無法確認實際解析的是哪個 schema |
-| **需要完整複製** | 即使只更改一個範本也必須複製整個 schema |
+```bash
+openspec schema fork spec-driven with-review
+```
 
-### 相關檔案
+然後編輯 `schema.yaml` 以添加：
 
-| 檔案 | 用途 |
-|------|---------|
-| `src/core/artifact-graph/resolver.ts` | Schema 解析邏輯 |
-| `src/core/artifact-graph/instruction-loader.ts` | 範本載入 |
-| `src/core/global-config.ts` | XDG 路徑輔助程式 |
-| `schemas/spec-driven/` | 預設 schema 和範本 |
+```yaml
+  - id: review
+    generates: review.md
+    description: 實作前的評論檢核表
+    template: review.md
+    instruction: |
+      根據設計建立評論檢核表。
+      包含安全性、效能和測試考量。
+    requires:
+      - design
+
+  - id: tasks
+    # ... 現有的任務配置 ...
+    requires:
+      - specs
+      - design
+      - review    # 現在任務也需要評論
+```
+
+---
+
+## 延伸閱讀
+
+- [CLI 參考：Schema 指令](cli.md#schema-commands) - 完整指令文件
