@@ -449,7 +449,7 @@ rules:
 
 在確定使用哪個 schema 時，OPSX 會依序檢查：
 
-1. **CLI 旗標**：`--schema tdd`（最高優先順序）
+1. **CLI 旗標**：`--schema <name>`（最高優先順序）
 2. **變更 Metadata**：變更目錄中的 `.openspec.yaml`
 3. **專案設定**：`openspec/config.yaml`
 4. **預設值**：`spec-driven`
@@ -459,7 +459,6 @@ rules:
 | Schema        | 成品                                 | 最適合       |
 | ------------- | ------------------------------------ | ------------ |
 | `spec-driven` | proposal → specs → design → tasks    | 大多數專案   |
-| `tdd`         | spec → tests → implementation → docs | 測試先行開發 |
 
 列出所有可用的 schema：
 
@@ -504,7 +503,6 @@ openspec init --force
 檢查您的 `rules:` 鍵是否符合您的 schema 的成品 ID：
 
 - **spec-driven**: `proposal`, `specs`, `design`, `tasks`
-- **tdd**: `spec`, `tests`, `implementation`, `docs`
 
 執行此指令以查看有效的成品 ID：
 

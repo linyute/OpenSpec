@@ -1,5 +1,22 @@
 # @fission-ai/openspec
 
+## 1.0.2
+
+### 修補程式變更
+
+- [#596](https://github.com/Fission-AI/OpenSpec/pull/596) [`e91568d`](https://github.com/Fission-AI/OpenSpec/commit/e91568deb948073f3e9d9bb2d2ab5bf8080d6cf4) 感謝 [@TabishB](https://github.com/TabishB)！ - ### 錯誤修正
+
+  - 釐清規格命名慣例 — 規格應以功能命名（`specs/<capability>/spec.md`），而非變更
+  - 修正任務核取方塊格式指引 — 任務現在明確要求使用 `- [ ]` 核取方塊格式以追蹤套用階段
+
+## 1.0.1
+
+### 修補程式變更
+
+- [#587](https://github.com/Fission-AI/OpenSpec/pull/587) [`943e0d4`](https://github.com/Fission-AI/OpenSpec/commit/943e0d41026d034de66b9442d1276c01b293eb2b) 感謝 [@TabishB](https://github.com/TabishB)！ - ### 錯誤修正
+
+  - 修正新手文件中不正確的封存路徑 — 範本現在顯示正確的路徑 `openspec/changes/archive/YYYY-MM-DD-<name>/` 而非不正確的 `openspec/archive/YYYY-MM-DD--<name>/`
+
 ## 1.0.0
 
 ### 重大變更

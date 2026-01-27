@@ -527,7 +527,7 @@ openspec templates [options]
 openspec templates
 
 # 顯示自訂 schema 的範本路徑
-openspec templates --schema tdd
+openspec templates --schema my-workflow
 
 # 用於程式化使用的 JSON
 openspec templates --json
@@ -576,10 +576,6 @@ openspec schemas
     預設的規格驅動開發工作流程
     流程：proposal → specs → design → tasks
 
-  tdd (套件)
-    測試驅動開發工作流程
-    流程：spec → tests → implementation → docs
-
   my-custom (專案)
     此專案的自訂工作流程
     流程：research → proposal → tasks
@@ -623,9 +619,9 @@ openspec schema init <name> [options]
 openspec schema init research-first
 
 # 帶有特定成品的非互動式建立
-openspec schema init tdd-lite \
-  --description "Lightweight TDD workflow" \
-  --artifacts "spec,tests,implementation" \
+openspec schema init rapid \
+  --description "快速迭代工作流" \
+  --artifacts "proposal,tasks" \
   --default
 ```
 

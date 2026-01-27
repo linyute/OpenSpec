@@ -115,16 +115,6 @@ AI： 已建立 openspec/changes/add-dark-mode/
      使用 /opsx:continue 來建立它，或使用 /opsx:ff 來建立所有成品。
 ```
 
-**帶有 schema 的範例：**
-```
-您：/opsx:new write-tests --schema tdd
-
-AI： 已建立 openspec/changes/write-tests/
-     Schema：tdd
-
-     準備好建立：spec
-```
-
 **提示：**
 - 使用具描述性的名稱：`add-feature`、`fix-bug`、`refactor-module`
 - 避免使用通用的名稱，如 `update`、`changes`、`wip`

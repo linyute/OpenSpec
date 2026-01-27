@@ -84,7 +84,7 @@ openspec new change my-feature
 
 當 OpenSpec 需要一個 Schema 時，它會按照以下順序檢查：
 
-1. CLI 旗標：`--schema tdd`
+1. CLI 旗標：`--schema <name>`
 2. 變更 Metadata (`變更資料夾中的 .openspec.yaml`)
 3. 專案配置 (`openspec/config.yaml`)
 4. 預設值 (`spec-driven`)
@@ -140,9 +140,9 @@ openspec/schemas/my-workflow/
 openspec schema init research-first
 
 # 非互動式
-openspec schema init tdd-lite \
-  --description "輕量級 TDD 工作流" \
-  --artifacts "spec,tests,impl" \
+openspec schema init rapid \
+  --description "快速迭代工作流" \
+  --artifacts "proposal,tasks" \
   --default
 ```
 
@@ -275,33 +275,35 @@ Path: /path/to/project/openspec/schemas/my-workflow
 
 ## 範例
 
-### 最小 TDD 工作流
+### 快速迭代工作流
+
+最小化的快速迭代工作流：
 
 ```yaml
-# openspec/schemas/tdd-minimal/schema.yaml
-name: tdd-minimal
+# openspec/schemas/rapid/schema.yaml
+name: rapid
 version: 1
-description: 先撰寫測試，然後實作
+description: 快速迭代，最小化開銷
 
 artifacts:
-  - id: tests
-    generates: tests.md
-    description: 要實作的測試用例
-    template: tests.md
+  - id: proposal
+    generates: proposal.md
+    description: 快速提案
+    template: proposal.md
     instruction: |
-      為此功能定義測試用例。
-      每個測試都應是明確的 Given/When/Then 場景。
+      為此變更建立簡短提案。
+      專注於做什麼和為什麼，跳過詳細規格。
     requires: []
 
-  - id: impl
-    generates: implementation.md
-    description: 實作說明
-    template: impl.md
-    requires: [tests]
+  - id: tasks
+    generates: tasks.md
+    description: 實作檢核表
+    template: tasks.md
+    requires: [proposal]
 
 apply:
-  requires: [impl]
-  tracks: implementation.md
+  requires: [tasks]
+  tracks: tasks.md
 ```
 
 ### 添加評論 (Review) 成品

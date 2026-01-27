@@ -98,16 +98,16 @@ rules:
 
 ### 設定欄位
 
-| 欄位      | 類型 | 說明                                             |
+| 欄位       | 類型 | 說明                                              |
 | --------- | ---- | ------------------------------------------------ |
-| `schema`  | 字串 | 新變更的預設 schema (例如：`spec-driven`, `tdd`) |
-| `context` | 字串 | 注入到所有成品指示中的專案背景資訊               |
-| `rules`   | 物件 | 針對每個成品的規則，以成品 ID 為鍵 (key)         |
+| `schema`  | 字串 | 新變更的預設 schema (例如：`spec-driven`)           |
+| `context` | 字串 | 注入到所有成品指示中的專案背景資訊                     |
+| `rules`   | 物件 | 針對每個成品的規則，以成品 ID 為鍵 (key)              |
 
 ### 它如何運作
 
 **Schema 優先順序** (由高至低)：
-1. CLI 旗標 (`--schema tdd`)
+1. CLI 旗標 (`--schema <name>`)
 2. 變更 Metadata (變更目錄中的 `.openspec.yaml`)
 3. 專案設定 (`openspec/config.yaml`)
 4. 預設值 (`spec-driven`)
@@ -129,12 +129,6 @@ rules:
 - `specs` — 規格
 - `design` — 技術設計
 - `tasks` — 實作任務
-
-**tdd**：
-- `spec` — 功能規格
-- `tests` — 測試檔案
-- `implementation` — 實作程式碼
-- `docs` — 文件
 
 ### 設定驗證
 
@@ -160,15 +154,15 @@ rules:
 
 ## 指令
 
-| 指令             | 它的作用                                            |
+| 指令             | 它的作用                                              |
 | ---------------- | --------------------------------------------------- |
-| `/opsx:explore`  | 思考想法、調查問題、釐清需求                        |
-| `/opsx:new`      | 開始一個新的變更                                    |
-| `/opsx:continue` | 建立下一個成品（根據已就緒的內容）                  |
-| `/opsx:ff`       | 快進 — 一次建立所有規劃成品                         |
-| `/opsx:apply`    | 實作任務，根據需要更新成品                          |
-| `/opsx:sync`     | 將差異規格同步到主規格（選用 — 封存會在需要時提示） |
-| `/opsx:archive`  | 完成後封存                                          |
+| `/opsx:explore`  | 思考想法、調查問題、釐清需求                            |
+| `/opsx:new`      | 開始一個新的變更                                       |
+| `/opsx:continue` | 建立下一個成品（根據已就緒的內容）                       |
+| `/opsx:ff`       | 快進 — 一次建立所有規劃成品                             |
+| `/opsx:apply`    | 實作任務，根據需要更新成品                              |
+| `/opsx:sync`     | 將差異規格同步到主規格（選用 — 封存會在需要時提示）        |
+| `/opsx:archive`  | 完成後封存                                            |
 
 ## 用法
 
@@ -462,7 +456,7 @@ rules:
   │  • 建立 proposal.md                     │
   │  • 建立 tasks.md                        │
   │  • 建立 design.md                       │
-  │  • 建立 specs/*.md                      │
+  │  • 建立 specs/<capability>/spec.md      │
   │                                         │
   │  不知道已存在的內容或                      │
   │  成品之間的相依性                         │
@@ -616,7 +610,6 @@ artifacts:
 Schema 定義了存在哪些成品及其相依性。目前可用：
 
 - **spec-driven** (預設)：proposal → specs → design → tasks
-- **tdd**：tests → implementation → docs
 
 ```bash
 # 列出可用的 schema
