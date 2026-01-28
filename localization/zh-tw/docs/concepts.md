@@ -244,7 +244,7 @@ CSS 自訂屬性支援執行階段切換，無需切換類別。
 - 瀏覽器原生解決方案
 
 ## 資料流
-```
+\`\`\`
 ThemeProvider (context)
        │
        ▼
@@ -252,7 +252,7 @@ ThemeToggle ◄──► localStorage
        │
        ▼
 CSS Variables (套用於 :root)
-```
+\`\`\`
 
 ## 檔案變更
 - `src/contexts/ThemeContext.tsx` (建立)

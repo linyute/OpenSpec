@@ -463,7 +463,7 @@ rules:
 列出所有可用的 schema：
 
 ```bash
-openspec workflow schemas
+openspec schemas
 ```
 
 ### 自訂 Schema
@@ -507,7 +507,7 @@ openspec init --force
 執行此指令以查看有效的成品 ID：
 
 ```bash
-openspec workflow schemas --json
+openspec schemas --json
 ```
 
 ### 設定未生效
