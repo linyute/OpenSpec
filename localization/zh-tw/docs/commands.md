@@ -569,6 +569,7 @@ AI： 歡迎來到 OpenSpec！
 | Cursor | `/opsx-new`, `/opsx-apply` |
 | Windsurf | `/opsx-new`, `/opsx-apply` |
 | Copilot | `/opsx-new`, `/opsx-apply` |
+| Trae | `/openspec-new-change`, `/openspec-apply-change` |
 
 無論語法如何，功能都是相同的。
 

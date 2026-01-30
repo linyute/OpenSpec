@@ -1,5 +1,28 @@
 # @fission-ai/openspec
 
+## 1.1.0
+
+### 次要變更
+
+- [#625](https://github.com/Fission-AI/OpenSpec/pull/625) [`53081fb`](https://github.com/Fission-AI/OpenSpec/commit/53081fb2a26ec66d2950ae0474b9a56cbc5b5a76) 感謝 [@TabishB](https://github.com/TabishB)! - ### 錯誤修正
+
+  - **Codex 全域路徑支援** — Codex 適配器現在可以正確解析全域路徑，修復了在專案目錄外執行時的工作流程檔案產生問題 (#622)
+  - **跨裝置或受限路徑上的封存操作** — 當重新命名因 EPERM 或 EXDEV 錯誤而失敗時，封存功能現在會退而使用「複製+移除」，修復了在網路/外部磁碟機上的失敗問題 (#605)
+  - **工作流程訊息中的斜線指令提示** — 工作流程完成訊息現在會顯示有助於下一步操作的斜線指令提示 (#603)
+  - **Windsurf 工作流程檔案路徑** — 更新 Windsurf 適配器以使用正確的 `workflows` 目錄，而非舊版的 `commands` 路徑 (#610)
+
+### 修補變更
+
+- [#550](https://github.com/Fission-AI/OpenSpec/pull/550) [`86d2e04`](https://github.com/Fission-AI/OpenSpec/commit/86d2e04cae76a999dbd1b4571f52fa720036be0c) 感謝 [@jerome-benoit](https://github.com/jerome-benoit)! - ### 改善
+
+  - **Nix flake 維護** — 現在從 package.json 動態讀取版本，減少手動同步問題
+  - **Nix 建構最佳化** — 來源篩選排除了 node_modules 和成品，改善建構時間
+  - **update-flake.sh 腳本** — 偵測雜湊值是否已正確，略過不必要的重新建構
+
+  ### 其他
+
+  - 已將 Nix CI 操作更新至最新版本 (nix-installer v21, magic-nix-cache v13)
+
 ## 1.0.2
 
 ### 修補程式變更

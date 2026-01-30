@@ -11,29 +11,32 @@ OpenSpec 可與 20 多種 AI 程式碼助理搭配使用。當您執行 `openspe
 
 ## 工具目錄參考
 
-| 工具                 | 技能位置             | 指令位置                     |
-| -------------------- | -------------------- | ---------------------------- |
-| Amazon Q Developer   | `.amazonq/skills/`   | `.amazonq/prompts/`          |
-| Antigravity          | `.agent/skills/`     | `.agent/workflows/`          |
-| Auggie (Augment CLI) | `.augment/skills/`   | `.augment/commands/`         |
-| Claude Code          | `.claude/skills/`    | `.claude/commands/opsx/`     |
-| Cline                | `.cline/skills/`     | `.clinerules/workflows/`     |
-| CodeBuddy            | `.codebuddy/skills/` | `.codebuddy/commands/opsx/`  |
-| Codex                | `.codex/skills/`     | `.codex/prompts/`            |
-| Continue             | `.continue/skills/`  | `.continue/prompts/`         |
-| CoStrict             | `.cospec/skills/`    | `.cospec/openspec/commands/` |
-| Crush                | `.crush/skills/`     | `.crush/commands/opsx/`      |
-| Cursor               | `.cursor/skills/`    | `.cursor/commands/`          |
-| Factory Droid        | `.factory/skills/`   | `.factory/commands/`         |
-| Gemini CLI           | `.gemini/skills/`    | `.gemini/commands/opsx/`     |
-| GitHub Copilot       | `.github/skills/`    | `.github/prompts/`           |
-| iFlow                | `.iflow/skills/`     | `.iflow/commands/`           |
-| Kilo Code            | `.kilocode/skills/`  | `.kilocode/workflows/`       |
-| OpenCode             | `.opencode/skills/`  | `.opencode/command/`         |
-| Qoder                | `.qoder/skills/`     | `.qoder/commands/opsx/`      |
-| Qwen Code            | `.qwen/skills/`      | `.qwen/commands/`            |
-| RooCode              | `.roo/skills/`       | `.roo/commands/`             |
-| Windsurf             | `.windsurf/skills/`  | `.windsurf/commands/opsx/`   |
+| 工具                 | 技能位置             | 指令位置                            |
+| -------------------- | -------------------- | ----------------------------------- |
+| Amazon Q Developer   | `.amazonq/skills/`   | `.amazonq/prompts/`                 |
+| Antigravity          | `.agent/skills/`     | `.agent/workflows/`                 |
+| Auggie (Augment CLI) | `.augment/skills/`   | `.augment/commands/`                |
+| Claude Code          | `.claude/skills/`    | `.claude/commands/opsx/`            |
+| Cline                | `.cline/skills/`     | `.clinerules/workflows/`            |
+| CodeBuddy            | `.codebuddy/skills/` | `.codebuddy/commands/opsx/`         |
+| Codex                | `.codex/skills/`     | `~/.codex/prompts/`*                |
+| Continue             | `.continue/skills/`  | `.continue/prompts/`                |
+| CoStrict             | `.cospec/skills/`    | `.cospec/openspec/commands/`        |
+| Crush                | `.crush/skills/`     | `.crush/commands/opsx/`             |
+| Cursor               | `.cursor/skills/`    | `.cursor/commands/`                 |
+| Factory Droid        | `.factory/skills/`   | `.factory/commands/`                |
+| Gemini CLI           | `.gemini/skills/`    | `.gemini/commands/opsx/`            |
+| GitHub Copilot       | `.github/skills/`    | `.github/prompts/`                  |
+| iFlow                | `.iflow/skills/`     | `.iflow/commands/`                  |
+| Kilo Code            | `.kilocode/skills/`  | `.kilocode/workflows/`              |
+| OpenCode             | `.opencode/skills/`  | `.opencode/command/`                |
+| Qoder                | `.qoder/skills/`     | `.qoder/commands/opsx/`             |
+| Qwen Code            | `.qwen/skills/`      | `.qwen/commands/`                   |
+| RooCode              | `.roo/skills/`       | `.roo/commands/`                    |
+| Trae                 | `.trae/skills/`      | `.trae/skills/` (via `/openspec-*`) |
+| Windsurf             | `.windsurf/skills/`  | `.windsurf/workflows/`              |
+
+\* Codex 指令會安裝在全域家目錄 (`~/.codex/prompts/` 或 `$CODEX_HOME/prompts/`)，而不是專案目錄。
 
 ## 非互動式設定
 
@@ -50,7 +53,7 @@ openspec init --tools all
 openspec init --tools none
 ```
 
-**可用的工具 ID：** `amazon-q`, `antigravity`, `auggie`, `claude`, `cline`, `codebuddy`, `codex`, `continue`, `costrict`, `crush`, `cursor`, `factory`, `gemini`, `github-copilot`, `iflow`, `kilocode`, `opencode`, `qoder`, `qwen`, `roocode`, `windsurf`
+**可用的工具 ID：** `amazon-q`, `antigravity`, `auggie`, `claude`, `cline`, `codebuddy`, `codex`, `continue`, `costrict`, `crush`, `cursor`, `factory`, `gemini`, `github-copilot`, `iflow`, `kilocode`, `opencode`, `qoder`, `qwen`, `roocode`, `trae`, `windsurf`
 
 ## 安裝的內容
 
