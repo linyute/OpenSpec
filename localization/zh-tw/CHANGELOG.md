@@ -1,5 +1,13 @@
 # @fission-ai/openspec
 
+## 1.1.1
+
+### 修補變更
+
+- [#627](https://github.com/Fission-AI/OpenSpec/pull/627) [`afb73cf`](https://github.com/Fission-AI/OpenSpec/commit/afb73cf9ec59c6f8b26d0c538c0218c203ba3c56) 感謝 [@TabishB](https://github.com/TabishB)! - ### 問題修正
+
+  - **OpenCode 指令參照** — 產生的檔案中的指令參照現在使用正確的 `/opsx-` 連字符格式，而非 `/opsx:` 冒號格式，確保指令在 OpenCode 中能正常運作
+
 ## 1.1.0
 
 ### 次要變更
