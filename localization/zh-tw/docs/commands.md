@@ -568,10 +568,12 @@ AI： 歡迎來到 OpenSpec！
 | Claude Code | `/opsx:new`, `/opsx:apply` |
 | Cursor | `/opsx-new`, `/opsx-apply` |
 | Windsurf | `/opsx-new`, `/opsx-apply` |
-| Copilot | `/opsx-new`, `/opsx-apply` |
+| Copilot (IDE) | `/opsx-new`, `/opsx-apply` |
 | Trae | `/openspec-new-change`, `/openspec-apply-change` |
 
 無論語法如何，功能都是相同的。
+
+> **注意：** GitHub Copilot 的指令（`.github/prompts/*.prompt.md`）僅在 IDE 延伸套件（如 VS Code、JetBrains、Visual Studio）中可用。GitHub Copilot CLI 目前不支援自訂提示檔 — 有關詳細資訊與替代作法，請參閱 [Supported Tools](supported-tools.md)。
 
 ---
 

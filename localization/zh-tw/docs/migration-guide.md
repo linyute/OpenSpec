@@ -46,7 +46,7 @@ OPSX 取代了舊有的階段鎖定工作流程，改用流動的、基於動作
 - Windsurf：`.windsurf/workflows/openspec-*.md`
 - Cline：`.clinerules/workflows/openspec-*.md`
 - Roo：`.roo/commands/openspec-*.md`
-- GitHub Copilot：`.github/prompts/openspec-*.prompt.md`
+ - GitHub Copilot：`.github/prompts/openspec-*.prompt.md`（僅限 IDE 擴充功能；不支援 Copilot CLI）
 - 以及其他 (Augment, Continue, Amazon Q 等)
 
 遷移程式會偵測您已設定的工具並清理其舊版檔案。

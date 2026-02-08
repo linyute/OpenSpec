@@ -19,13 +19,13 @@ OpenSpec 可與 20 多種 AI 程式碼助理搭配使用。當您執行 `openspe
 | Claude Code          | `.claude/skills/`    | `.claude/commands/opsx/`            |
 | Cline                | `.cline/skills/`     | `.clinerules/workflows/`            |
 | CodeBuddy            | `.codebuddy/skills/` | `.codebuddy/commands/opsx/`         |
-| Codex                | `.codex/skills/`     | `~/.codex/prompts/`*                |
+| Codex                | `.codex/skills/`     | `~/.codex/prompts/`\*               |
 | Continue             | `.continue/skills/`  | `.continue/prompts/`                |
 | CoStrict             | `.cospec/skills/`    | `.cospec/openspec/commands/`        |
 | Crush                | `.crush/skills/`     | `.crush/commands/opsx/`             |
 | Cursor               | `.cursor/skills/`    | `.cursor/commands/`                 |
 | Factory Droid        | `.factory/skills/`   | `.factory/commands/`                |
-| Gemini CLI           | `.gemini/skills/`    | `.gemini/commands/opsx/`            |
+| Gemini CLI           | `.gemini/skills/`    | `.gemini/commands/opsx/`\*\*        |
 | GitHub Copilot       | `.github/skills/`    | `.github/prompts/`                  |
 | iFlow                | `.iflow/skills/`     | `.iflow/commands/`                  |
 | Kilo Code            | `.kilocode/skills/`  | `.kilocode/workflows/`              |
@@ -37,6 +37,8 @@ OpenSpec 可與 20 多種 AI 程式碼助理搭配使用。當您執行 `openspe
 | Windsurf             | `.windsurf/skills/`  | `.windsurf/workflows/`              |
 
 \* Codex 指令會安裝在全域家目錄 (`~/.codex/prompts/` 或 `$CODEX_HOME/prompts/`)，而不是專案目錄。
+
+GitHub Copilot 的 `.github/prompts/*.prompt.md` 檔案會在 **僅限 IDE 擴充套件**（VS Code、JetBrains、Visual Studio）中被識別為自訂斜線指令。GitHub Copilot CLI 目前不支援從此目錄使用自訂提示 — 請參閱 [github/copilot-cli#618](https://github.com/github/copilot-cli/issues/618)。如果您使用 Copilot CLI，您可能需要在 `.github/agents/` 中手動設定 [自訂代理](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents) 作為替代方案.
 
 ## 非互動式設定
 
