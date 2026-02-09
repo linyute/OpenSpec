@@ -136,7 +136,7 @@ git log --oneline -10 2>/dev/null || echo "No git history"
 [您的簡要分析——您發現了什麼，任何考量因素]
 
 ┌─────────────────────────────────────────┐
-│   [選配：如果有助於釐清，加入 ASCII 圖表]  │
+│   [選配：如果有助於釐清，加入 ASCII 圖表]   │
 └─────────────────────────────────────────┘
 
 Explore 模式 (`/opsx:explore`) 用於這類思考——在實作前進行調查。您可以在需要思考問題時隨時使用它。
@@ -450,15 +450,15 @@ openspec archive "<name>"
 
 ## 指令參考
 
-| 指令 | 用途 |
-|---------|--------------|
-| `/opsx:explore` | 在工作前/工作中思考問題 |
-| `/opsx:new` | 開始新變更，引導建立 artifacts |
-| `/opsx:ff` | 快速通關：一次建立所有 artifacts |
-| `/opsx:continue` | 繼續處理現有的變更 |
-| `/opsx:apply` | 實作變更中的任務 |
-| `/opsx:verify` | 驗證實作是否符合 artifacts |
-| `/opsx:archive` | 封存已完成的變更 |
+| 指令             | 用途                             |
+| ---------------- | -------------------------------- |
+| `/opsx:explore`  | 在工作前/工作中思考問題          |
+| `/opsx:new`      | 開始新變更，引導建立 artifacts   |
+| `/opsx:ff`       | 快速通關：一次建立所有 artifacts |
+| `/opsx:continue` | 繼續處理現有的變更               |
+| `/opsx:apply`    | 實作變更中的任務                 |
+| `/opsx:verify`   | 驗證實作是否符合 artifacts       |
+| `/opsx:archive`  | 封存已完成的變更                 |
 
 ---
 
@@ -494,15 +494,15 @@ openspec archive "<name>"
 ```
 ## OpenSpec 快速參考
 
-| 指令 | 用途 |
-|---------|--------------|
-| `/opsx:explore` | 思考問題（不變更程式碼） |
-| `/opsx:new <name>` | 開始新變更，按部就班執行 |
-| `/opsx:ff <name>` | 快速通關：一次完成所有 artifacts |
-| `/opsx:continue <name>` | 繼續現有的變更 |
-| `/opsx:apply <name>` | 實作任務 |
-| `/opsx:verify <name>` | 驗證實作 |
-| `/opsx:archive <name>` | 完成後封存 |
+| 指令                    | 用途                             |
+| ----------------------- | -------------------------------- |
+| `/opsx:explore`         | 思考問題（不變更程式碼）         |
+| `/opsx:new <name>`      | 開始新變更，按部就班執行         |
+| `/opsx:ff <name>`       | 快速通關：一次完成所有 artifacts |
+| `/opsx:continue <name>` | 繼續現有的變更                   |
+| `/opsx:apply <name>`    | 實作任務                         |
+| `/opsx:verify <name>`   | 驗證實作                         |
+| `/opsx:archive <name>`  | 完成後封存                       |
 
 嘗試使用 `/opsx:new` 開始您的第一個變更，或者如果您想加快速度，請使用 `/opsx:ff`。
 ```

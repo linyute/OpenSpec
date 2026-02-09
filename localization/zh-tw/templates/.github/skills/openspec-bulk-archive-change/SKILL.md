@@ -84,12 +84,12 @@ metadata:
    顯示摘要所有變更的表格：
 
    ```
-   | 變更                 | Artifacts | 任務  | Specs   | 衝突     | 狀態  |
-   |---------------------|-----------|-------|---------|-----------|--------|
-   | schema-management   | 已完成    | 5/5   | 2 delta | 無        | 就緒  |
-   | project-config      | 已完成    | 3/3   | 1 delta | 無        | 就緒  |
-   | add-oauth           | 已完成    | 4/4   | 1 delta | auth (!)  | 就緒* |
-   | add-verify-skill    | 剩 1 項   | 2/5   | 無      | 無        | 警告  |
+   | 變更              | Artifacts | 任務 | Specs   | 衝突     | 狀態  |
+   | ----------------- | --------- | ---- | ------- | -------- | ----- |
+   | schema-management | 已完成    | 5/5  | 2 delta | 無       | 就緒  |
+   | project-config    | 已完成    | 3/3  | 1 delta | 無       | 就緒  |
+   | add-oauth         | 已完成    | 4/4  | 1 delta | auth (!) | 就緒* |
+   | add-verify-skill  | 剩 1 項   | 2/5  | 無      | 無       | 警告  |
    ```
 
    針對衝突，顯示解決方案：
