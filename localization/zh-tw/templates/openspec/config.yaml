@@ -1,0 +1,20 @@
+schema: spec-driven
+
+# 專案背景資訊 (選配)
+# 這會在建立 artifacts 時顯示給 AI。
+# 新增您的技術棧、慣例、風格指南、領域知識等。
+# 範例：
+#   context: |
+#     技術棧：TypeScript, React, Node.js
+#     我們使用 conventional commits
+#     領域：電子商務平台
+
+# 個別 Artifact 規則 (選配)
+# 為特定的 artifacts 新增自定義規則。
+# 範例：
+#   rules:
+#     proposal:
+#       - proposal 保持在 500 字以內
+#       - 務必包含 "Non-goals" 章節
+#     tasks:
+#       - 將任務拆分為最多 2 小時的區塊
