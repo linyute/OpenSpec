@@ -36,7 +36,7 @@
 > [!TIP]
 > **新工作流程現已推出！** 我們使用新的成品引導式工作流程重建了 OpenSpec。
 >
-> 執行 `/opsx:onboard` 以開始使用。 → [在此瞭解更多資訊](docs/opsx.md)
+> 執行 `/opsx:propose "您的想法"` 來開始使用。 → [在此了解更多](docs/opsx.md)
 
 <p align="center">
   在 X 上關注 <a href="https://x.com/0xTab">@0xTab</a> 以獲取更新 · 加入 <a href="https://discord.gg/YctCnvvshC">OpenSpec Discord</a> 進行諮詢與提問。
@@ -46,19 +46,16 @@
 
 在團隊中使用 OpenSpec？[發送電子郵件至此](mailto:teams@openspec.dev) 以獲取我們 Slack 頻道的存取權限。
 
-<!-- TODO: Add GIF demo of /opsx:new → /opsx:archive workflow -->
+<!-- TODO: Add GIF demo of /opsx:propose → /opsx:archive workflow -->
 
 ## 看看它的運作方式
 
 ```text
-您：/opsx:new add-dark-mode
-AI： 已建立 openspec/changes/add-dark-mode/
-     準備好建立：proposal
-
-您：/opsx:ff   # "快進 (fast-forward)" - 產生所有規劃文件
-AI： ✓ proposal.md — 我們為什麼要這樣做，正在變更什麼
-     ✓ specs/       — 需求與情境
-     ✓ design.md    — 技術方法
+您：/opsx:propose add-dark-mode
+AI：已建立 openspec/changes/add-dark-mode/
+     ✓ proposal.md — 為什麼我們要這樣做，哪些部分正在變更
+     ✓ specs/       — 需求和情境
+     ✓ design.md    — 技術方案
      ✓ tasks.md     — 實作檢查清單
      準備好進行實作！
 
@@ -101,7 +98,9 @@ cd your-project
 openspec init
 ```
 
-現在告訴您的 AI：`/opsx:new <您想要建構的內容>`
+現在告訴您的 AI：`/opsx:propose <您想要建構的內容>`
+
+如果您想要擴展的工作流 (`/opsx:new`、`/opsx:continue`、`/opsx:ff`、`/opsx:verify`、`/opsx:sync`、`/opsx:bulk-archive`、`/opsx:onboard`)，請使用 `openspec config profile` 選擇它，並使用 `openspec update` 套用。
 
 > [!NOTE]
 > 不確定您的工具是否受支援？[檢視完整清單](docs/supported-tools.md) – 我們支援 20 多種工具且持續增加中。

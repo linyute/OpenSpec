@@ -1,89 +1,105 @@
-# 支援的工具
+# 受支援的工具 (Supported Tools)
 
-OpenSpec 可與 20 多種 AI 程式碼助理搭配使用。當您執行 `openspec init` 時，系統會提示您選擇所使用的工具，OpenSpec 將會設定相應的整合。
+OpenSpec 可與多種 AI 編碼助理搭配使用。當您執行 `openspec init` 時，OpenSpec 會根據您作用中的設定檔/工作流選擇以及遞送模式，來設定所選取的工具。
 
-## 它如何運作
+## 運作方式
 
-針對您選擇的每個工具，OpenSpec 會安裝：
+對於每個選取的工具，OpenSpec 可以安裝：
 
-1. **技能 (Skills)** — 可重複使用的指示檔案，驅動 `/opsx:*` 工作流程指令。
-2. **指令 (Commands)** — 工具特定的斜線指令繫結。
+1. **技能 (Skills)** (若遞送模式包含技能)：`.../skills/openspec-*/SKILL.md`
+2. **命令 (Commands)** (若遞送模式包含命令)：特定工具的 `opsx-*` 命令檔案
+
+根據預設，OpenSpec 使用 `core` 設定檔，其中包含：
+- `propose`
+- `explore`
+- `apply`
+- `archive`
+
+您可以透過 `openspec config profile` 啟用擴展工作流 (`new`, `continue`, `ff`, `verify`, `sync`, `bulk-archive`, `onboard`)，然後執行 `openspec update`。
 
 ## 工具目錄參考
 
-| 工具                 | 技能位置             | 指令位置                            |
-| -------------------- | -------------------- | ----------------------------------- |
-| Amazon Q Developer   | `.amazonq/skills/`   | `.amazonq/prompts/`                 |
-| Antigravity          | `.agent/skills/`     | `.agent/workflows/`                 |
-| Auggie (Augment CLI) | `.augment/skills/`   | `.augment/commands/`                |
-| Claude Code          | `.claude/skills/`    | `.claude/commands/opsx/`            |
-| Cline                | `.cline/skills/`     | `.clinerules/workflows/`            |
-| CodeBuddy            | `.codebuddy/skills/` | `.codebuddy/commands/opsx/`         |
-| Codex                | `.codex/skills/`     | `~/.codex/prompts/`\*               |
-| Continue             | `.continue/skills/`  | `.continue/prompts/`                |
-| CoStrict             | `.cospec/skills/`    | `.cospec/openspec/commands/`        |
-| Crush                | `.crush/skills/`     | `.crush/commands/opsx/`             |
-| Cursor               | `.cursor/skills/`    | `.cursor/commands/`                 |
-| Factory Droid        | `.factory/skills/`   | `.factory/commands/`                |
-| Gemini CLI           | `.gemini/skills/`    | `.gemini/commands/opsx/`\*\*        |
-| GitHub Copilot       | `.github/skills/`    | `.github/prompts/`                  |
-| iFlow                | `.iflow/skills/`     | `.iflow/commands/`                  |
-| Kilo Code            | `.kilocode/skills/`  | `.kilocode/workflows/`              |
-| OpenCode             | `.opencode/skills/`  | `.opencode/command/`                |
-| Qoder                | `.qoder/skills/`     | `.qoder/commands/opsx/`             |
-| Qwen Code            | `.qwen/skills/`      | `.qwen/commands/`                   |
-| RooCode              | `.roo/skills/`       | `.roo/commands/`                    |
-| Trae                 | `.trae/skills/`      | `.trae/skills/` (via `/openspec-*`) |
-| Windsurf             | `.windsurf/skills/`  | `.windsurf/workflows/`              |
+| 工具 (ID) | 技能路徑模式 | 命令路徑模式 |
+|-----------|---------------------|----------------------|
+| Amazon Q Developer (`amazon-q`) | `.amazonq/skills/openspec-*/SKILL.md` | `.amazonq/prompts/opsx-<id>.md` |
+| Antigravity (`antigravity`) | `.agent/skills/openspec-*/SKILL.md` | `.agent/workflows/opsx-<id>.md` |
+| Auggie (`auggie`) | `.augment/skills/openspec-*/SKILL.md` | `.augment/commands/opsx-<id>.md` |
+| Claude Code (`claude`) | `.claude/skills/openspec-*/SKILL.md` | `.claude/commands/opsx/<id>.md` |
+| Cline (`cline`) | `.cline/skills/openspec-*/SKILL.md` | `.clinerules/workflows/opsx-<id>.md` |
+| CodeBuddy (`codebuddy`) | `.codebuddy/skills/openspec-*/SKILL.md` | `.codebuddy/commands/opsx/<id>.md` |
+| Codex (`codex`) | `.codex/skills/openspec-*/SKILL.md` | `$CODEX_HOME/prompts/opsx-<id>.md`\* |
+| Continue (`continue`) | `.continue/skills/openspec-*/SKILL.md` | `.continue/prompts/opsx-<id>.prompt` |
+| CoStrict (`costrict`) | `.cospec/skills/openspec-*/SKILL.md` | `.cospec/openspec/commands/opsx-<id>.md` |
+| Crush (`crush`) | `.crush/skills/openspec-*/SKILL.md` | `.crush/commands/opsx/<id>.md` |
+| Cursor (`cursor`) | `.cursor/skills/openspec-*/SKILL.md` | `.cursor/commands/opsx-<id>.md` |
+| Factory Droid (`factory`) | `.factory/skills/openspec-*/SKILL.md` | `.factory/commands/opsx-<id>.md` |
+| Gemini CLI (`gemini`) | `.gemini/skills/openspec-*/SKILL.md` | `.gemini/commands/opsx/<id>.toml` |
+| GitHub Copilot (`github-copilot`) | `.github/skills/openspec-*/SKILL.md` | `.github/prompts/opsx-<id>.prompt.md`\*\* |
+| iFlow (`iflow`) | `.iflow/skills/openspec-*/SKILL.md` | `.iflow/commands/opsx-<id>.md` |
+| Kilo Code (`kilocode`) | `.kilocode/skills/openspec-*/SKILL.md` | `.kilocode/workflows/opsx-<id>.md` |
+| Kiro (`kiro`) | `.kiro/skills/openspec-*/SKILL.md` | `.kiro/prompts/opsx-<id>.prompt.md` |
+| OpenCode (`opencode`) | `.opencode/skills/openspec-*/SKILL.md` | `.opencode/commands/opsx-<id>.md` |
+| Pi (`pi`) | `.pi/skills/openspec-*/SKILL.md` | `.pi/prompts/opsx-<id>.md` |
+| Qoder (`qoder`) | `.qoder/skills/openspec-*/SKILL.md` | `.qoder/commands/opsx/<id>.md` |
+| Qwen Code (`qwen`) | `.qwen/skills/openspec-*/SKILL.md` | `.qwen/commands/opsx-<id>.toml` |
+| RooCode (`roocode`) | `.roo/skills/openspec-*/SKILL.md` | `.roo/commands/opsx-<id>.md` |
+| Trae (`trae`) | `.trae/skills/openspec-*/SKILL.md` | 不會生成 (無命令適配器；請使用以技能為基礎的 `/openspec-*` 呼叫) |
+| Windsurf (`windsurf`) | `.windsurf/skills/openspec-*/SKILL.md` | `.windsurf/workflows/opsx-<id>.md` |
 
-\* Codex 指令會安裝在全域家目錄 (`~/.codex/prompts/` 或 `$CODEX_HOME/prompts/`)，而不是專案目錄。
+\* Codex 命令會安裝在全域的 Codex home 目錄中 (若有設定則為 `$CODEX_HOME/prompts/`，否則為 `~/.codex/prompts/`)，而非您的專案目錄。
 
-GitHub Copilot 的 `.github/prompts/*.prompt.md` 檔案會在 **僅限 IDE 擴充套件**（VS Code、JetBrains、Visual Studio）中被識別為自訂斜線指令。GitHub Copilot CLI 目前不支援從此目錄使用自訂提示 — 請參閱 [github/copilot-cli#618](https://github.com/github/copilot-cli/issues/618)。如果您使用 Copilot CLI，您可能需要在 `.github/agents/` 中手動設定 [自訂代理](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents) 作為替代方案.
+\*\* GitHub Copilot 提示檔案在 IDE 擴充功能 (VS Code, JetBrains, Visual Studio) 中會被辨識為自訂的斜線命令。Copilot CLI 目前不會直接讀取 `.github/prompts/*.prompt.md`。
 
 ## 非互動式設定
 
-對於 CI/CD 或腳本化設定，請使用 `--tools` 旗標：
+對於 CI/CD 或指令碼式設定，請使用 `--tools` (以及選用的 `--profile`)：
 
 ```bash
 # 設定特定工具
 openspec init --tools claude,cursor
 
-# 設定所有支援的工具
+# 設定所有受支援的工具
 openspec init --tools all
 
 # 跳過工具設定
 openspec init --tools none
+
+# 針對此次執行覆寫設定檔
+openspec init --profile core
 ```
 
-**可用的工具 ID：** `amazon-q`, `antigravity`, `auggie`, `claude`, `cline`, `codebuddy`, `codex`, `continue`, `costrict`, `crush`, `cursor`, `factory`, `gemini`, `github-copilot`, `iflow`, `kilocode`, `opencode`, `qoder`, `qwen`, `roocode`, `trae`, `windsurf`
+**可用的工具 ID (`--tools`)：** `amazon-q`, `antigravity`, `auggie`, `claude`, `cline`, `codex`, `codebuddy`, `continue`, `costrict`, `crush`, `cursor`, `factory`, `gemini`, `github-copilot`, `iflow`, `kilocode`, `kiro`, `opencode`, `pi`, `qoder`, `qwen`, `roocode`, `trae`, `windsurf`
 
-## 安裝的內容
+## 視工作流而定的安裝
 
-針對每個工具，OpenSpec 會產生 10 個技能檔案來驅動 OPSX 工作流程：
+OpenSpec 根據選取的工作流安裝對應的工作流成品：
 
-| 技能                           | 用途                                                |
-| ------------------------------ | --------------------------------------------------- |
-| `openspec-explore`             | 探索想法的思考夥伴                                  |
-| `openspec-new-change`          | 開始一個新的變更                                    |
-| `openspec-continue-change`     | 建立下一個成品                                      |
-| `openspec-ff-change`           | 快進完成所有規劃成品                                |
-| `openspec-apply-change`        | 實作任務                                            |
-| `openspec-verify-change`       | 驗證實作完整性                                      |
-| `openspec-sync-specs`          | 將差異規格同步到主規格（選用 — 封存會在需要時提示） |
-| `openspec-archive-change`      | 封存一個已完成的變更                                |
-| `openspec-bulk-archive-change` | 一次封存多個變更                                    |
-| `openspec-onboard`             | 引導式導覽，完成一個完整的工作流程週期              |
+- **核心設定檔 (預設)：** `propose`, `explore`, `apply`, `archive`
+- **自訂選擇：** 所有工作流 ID 的任何子集：
+  `propose`, `explore`, `new`, `continue`, `apply`, `ff`, `sync`, `archive`, `bulk-archive`, `verify`, `onboard`
 
-這些技能透過 `/opsx:new`、`/opsx:apply` 等斜線指令呼叫。請參閱 [指令](commands.md) 獲取完整列表。
+換句話說，技能/命令的數量取決於設定檔和遞送模式，而非固定的。
 
-## 新增工具
+## 生成的技能名稱
 
-想要新增對另一個 AI 編碼助理的支援嗎？請查看 [指令配接器模式 (command adapter pattern)](../CONTRIBUTING.md) 或在 GitHub 上提交 issue。
+當透過設定檔/工作流設定選取時，OpenSpec 會生成以下技能：
 
----
+- `openspec-propose`
+- `openspec-explore`
+- `openspec-new-change`
+- `openspec-continue-change`
+- `openspec-apply-change`
+- `openspec-ff-change`
+- `openspec-sync-specs`
+- `openspec-archive-change`
+- `openspec-bulk-archive-change`
+- `openspec-verify-change`
+- `openspec-onboard`
+
+有關命令行為，請參閱 [命令 (Commands)](commands.md)；有關 `init`/`update` 選項，請參閱 [CLI](cli.md)。
 
 ## 相關內容
 
-- [CLI 參考](cli.md) — 終端機指令
-- [指令](commands.md) — 斜線指令與技能
-- [入門指南](getting-started.md) — 首次設定
+- [CLI 參考](cli.md) — 終端機命令
+- [命令 (Commands)](commands.md) — 斜線命令與技能
+- [入門指南 (Getting Started)](getting-started.md) — 首次設定

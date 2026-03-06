@@ -1,5 +1,25 @@
 # @fission-ai/openspec
 
+## 1.2.0
+
+### 次要變更
+
+- [#747](https://github.com/Fission-AI/OpenSpec/pull/747) [`1e94443`](https://github.com/Fission-AI/OpenSpec/commit/1e94443a3551b228eecbc89e95d96d3b9600a192) 感謝 [@TabishB](https://github.com/TabishB)! - ### 新功能
+
+  - **設定檔系統 (Profile system)** — 在 `core` (4 個必要工作流) 與 `custom` (選擇任何子集) 設定檔之間進行選擇，以控制安裝哪些技能。使用新的 `openspec config profile` 命令管理設定檔
+  - **Propose 工作流** — 新的一步式工作流，可根據單一請求建立包含設計、規格和任務的完整變更提案 — 無需分別執行 `new` 和 `ff`
+  - **AI 工具自動偵測** — `openspec init` 現在會掃描您的專案以尋找現有的工具目錄 (`.claude/`、`.cursor/` 等)，並預先選擇偵測到的工具
+  - **Pi (pi.dev) 支援** — Pi 編碼代理程式現在是支援的工具，具備提示和技能生成功能
+  - **Kiro 支援** — AWS Kiro IDE 現在是支援的工具，具備提示和技能生成功能
+  - **同步剪除取消選擇的工作流** — `openspec update` 現在會移除您已取消選擇的工作流的命令檔案和技能目錄，保持您的專案整潔
+  - **設定偏移警告** — 當全域設定與目前專案不同步時，`openspec config list` 會發出警告
+
+  ### 錯誤修復
+
+  - 修復了 onboard 預檢在剛初始化的專案上給出錯誤的「未初始化」錯誤的問題
+  - 修復了封存工作流在同步時中途停止的問題 — 現在在同步完成後會正常恢復
+  - 為 onboard shell 命令新增了 Windows PowerShell 替代方案
+
 ## 1.1.1
 
 ### 修補變更
