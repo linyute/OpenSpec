@@ -6,7 +6,7 @@ compatibility: 相容性：需要 openspec CLI。
 metadata:
   author: openspec
   version: "1.0"
-  generatedBy: "1.2.0"
+  generatedBy: "1.3.0"
 ---
 
 進入探索模式。深入思考。自由視覺化。隨對話自然展開。

@@ -103,7 +103,7 @@ openspec init
 如果您想要擴展的工作流 (`/opsx:new`、`/opsx:continue`、`/opsx:ff`、`/opsx:verify`、`/opsx:sync`、`/opsx:bulk-archive`、`/opsx:onboard`)，請使用 `openspec config profile` 選擇它，並使用 `openspec update` 套用。
 
 > [!NOTE]
-> 不確定您的工具是否受支援？[檢視完整清單](docs/supported-tools.md) – 我們支援 20 多種工具且持續增加中。
+> 不確定您的工具是否受支援？[檢視完整清單](docs/supported-tools.md) – 我們支援 25 種工具且持續增加中。
 >
 > 同時支援 pnpm、yarn、bun 和 nix。[參閱安裝選項](docs/installation.md)。
 

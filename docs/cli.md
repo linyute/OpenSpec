@@ -918,11 +918,13 @@ openspec completion uninstall
 
 ## 環境變數
 
-| 變數                   | 描述                                 |
-| ---------------------- | ------------------------------------ |
-| `OPENSPEC_CONCURRENCY` | 批量驗證的預設平行度 (預設：6)       |
-| `EDITOR` 或 `VISUAL`   | 用於 `openspec config edit` 的編輯器 |
-| `NO_COLOR`             | 設定後停用彩色輸出                   |
+| 變數                   | 描述                                                  |
+| ---------------------- | ----------------------------------------------------- |
+| `OPENSPEC_TELEMETRY`   | 設為 `0` 以停用遙測                                       |
+| `DO_NOT_TRACK`         | 設為 `1` 以停用遙測（標準 DNT 訊號）                         |
+| `OPENSPEC_CONCURRENCY` | 批量驗證的預設平行度 (預設：6)                        |
+| `EDITOR` 或 `VISUAL`   | 用於 `openspec config edit` 的編輯器                  |
+| `NO_COLOR`             | 設定後停用彩色輸出                                    |
 
 ---
 

@@ -6,7 +6,7 @@ compatibility: 需要 openspec CLI。
 metadata:
   author: openspec
   version: "1.0"
-  generatedBy: "1.2.0"
+  generatedBy: "1.3.0"
 ---
 
 驗證實作是否符合變更成品（規格、任務、設計）。

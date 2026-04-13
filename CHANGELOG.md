@@ -1,5 +1,28 @@
 # @fission-ai/openspec
 
+## 1.3.0
+
+### 次要變更
+
+- [#952](https://github.com/Fission-AI/OpenSpec/pull/952) [`cce787e`](https://github.com/Fission-AI/OpenSpec/commit/cce787ec4083da2b27781f6786f5ce0002909a7b) 感謝 [@TabishB](https://github.com/TabishB)! - ### 新功能
+
+  - **支援 Junie** — 為 JetBrains Junie 新增工具與指令產生
+  - **支援 Lingma IDE** — 新增對 Lingma IDE 的設定支援
+  - **支援 ForgeCode** — 新增對 ForgeCode 的工具支援
+  - **支援 IBM Bob** — 新增對 IBM Bob 編碼助理的支援
+
+  ### 錯誤修復
+
+  - **Shell 自動完成改為選擇性安裝** — 完成安裝現在為選擇性，修正 PowerShell 編碼損毀問題
+  - **Copilot 自動偵測** — 防止裸 `.github/` 目錄被誤判為 GitHub Copilot
+  - **pi.dev 指令產生** — 修正指令參照轉換與範本參數傳遞
+
+### 修補變更
+
+- [#760](https://github.com/Fission-AI/OpenSpec/pull/760) [`61eb999`](https://github.com/Fission-AI/OpenSpec/commit/61eb999f7c6c0fc98d2e7f3678756fce6a3f4378) 感謝 [@fsilvaortiz](https://github.com/fsilvaortiz)! - 修正：OpenCode 適配器現在使用 `.opencode/commands/`（複數）以符合 OpenCode 官方目錄慣例。修復 #748。
+
+- [#759](https://github.com/Fission-AI/OpenSpec/pull/759) [`afdca0d`](https://github.com/Fission-AI/OpenSpec/commit/afdca0d5dab1aa109cfd8848b2512333ccad60c3) 感謝 [@fsilvaortiz](https://github.com/fsilvaortiz)! - 修正：`openspec status` 在無變更時會優雅退出，而不再拋出致命錯誤。修復 #714。
+
 ## 1.2.0
 
 ### 次要變更
