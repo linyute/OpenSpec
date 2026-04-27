@@ -6,7 +6,7 @@ compatibility: 需要 openspec CLI。
 metadata:
   author: openspec
   version: "1.0"
-  generatedBy: "1.3.0"
+  generatedBy: "1.3.1"
 ---
 
 實作 OpenSpec 變更中的任務。
@@ -39,7 +39,7 @@ metadata:
    ```
 
    這將傳回：
-   - 內容檔案路徑（視結構集而定 - 可能是 proposal/specs/design/tasks 或 spec/tests/implementation/docs）
+   - `contextFiles`: artifact ID -> 一個具體檔案路徑的陣列（依結構集而異 — 可能為 proposal/specs/design/tasks，或 spec/tests/implementation/docs）
    - 進度（總計、已完成、剩餘）
    - 帶有狀態的任務列表
    - 基於目前狀態的動態指令
@@ -51,8 +51,8 @@ metadata:
 
 4. **讀取內容檔案**
 
-   讀取套用指令輸出中 `contextFiles` 列表裡的檔案。
-   檔案取決於所使用的結構集：
+讀取來自 apply instructions 輸出中 `contextFiles` 所列的每一個檔案路徑。
+檔案取決於所使用的結構集：
    - **spec-driven**：proposal、specs、design、tasks
    - 其他結構集：遵循 CLI 輸出的 contextFiles
 

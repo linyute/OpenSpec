@@ -1,5 +1,17 @@
 # @fission-ai/openspec
 
+## 1.3.1
+
+### 修補變更
+
+- [#995](https://github.com/Fission-AI/OpenSpec/pull/995) [`d1f3861`](https://github.com/Fission-AI/OpenSpec/commit/d1f3861d9ec694cc924b042b5da01963dcf93137) 感謝 [@TabishB](https://github.com/TabishB)! - ### 錯誤修復
+
+  - **規範化的產物路徑** — 工作流程的產物路徑現在透過原生的 `realpath` 解析，因此符號連結與大小寫不敏感的檔案系統不再在 apply 與 archive 過程中造成路徑不匹配。
+  - **使用 glob 的 apply 指令** — 具有 glob 產物輸出的 apply 指令現在會正確解析，且字面量產物輸出被強制為檔案路徑。
+  - **隱藏於主規格的需求** — 嵌在程式碼區塊或其他被隱藏於主規格的需求現在會在驗證時被偵測到。
+  - **乾淨的 `--json` 輸出** — 當傳入 `--json` 時，轉輪進度文字不再滲入 stderr，使結合 stdout 與 stderr 的 AI 代理能可靠解析 JSON。
+  - **防火牆環境下的靜默遙測** — PostHog 網路錯誤現在會以 1 秒逾時吞掉，並停用重試/遠端設定，因此在受限網路中 OpenSpec 不再顯示 `PostHogFetchNetworkError`。遙測退出選項已在 README、安裝指南與 CLI 參考中提早說明。
+
 ## 1.3.0
 
 ### 次要變更

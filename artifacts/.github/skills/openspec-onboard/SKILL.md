@@ -6,7 +6,7 @@ compatibility: 需要 openspec CLI。
 metadata:
   author: openspec
   version: "1.0"
-  generatedBy: "1.3.0"
+  generatedBy: "1.3.1"
 ---
 
 引導使用者完成他們的第一個完整 OpenSpec 工作流程週期。這是一個教學體驗 —— 您將在他們的程式碼庫中執行實際工作，同時解釋每個步驟。

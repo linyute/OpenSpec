@@ -32,7 +32,7 @@ description: 在封存之前驗證實作是否與變更產出物相符
    openspec instructions apply --change "<name>" --json
    ```
 
-   這會傳回變更目錄和上下文檔案。從 `contextFiles` 讀取所有可用的產出物。
+   這會回傳變更目錄和 `contextFiles`（artifact ID -> 具體檔案路徑的陣列）。請從 `contextFiles` 讀取所有可用的產物檔案。
 
 4. **初始化驗證報告結構**
 
@@ -46,7 +46,7 @@ description: 在封存之前驗證實作是否與變更產出物相符
 5. **驗證完整性**
 
    **任務完成情況**：
-   - 如果 contextFiles 中存在 tasks.md，請讀取它
+   - 如果存在 `contextFiles.tasks`，請讀取其中的每個檔案路徑
    - 解析核取方塊：`- [ ]`（未完成）與 `- [x]`（已完成）
    - 計算已完成與總任務數
    - 如果存在未完成的任務：
@@ -85,7 +85,7 @@ description: 在封存之前驗證實作是否與變更產出物相符
 7. **驗證一致性**
 
    **設計遵循情況**：
-   - 如果 contextFiles 中存在 design.md：
+   - 如果 `contextFiles.design` 存在：
      - 擷取關鍵決策（尋找諸如「Decision:」、「Approach:」、「Architecture:」之類的章節）
      - 驗證實作是否遵循這些決策
      - 如果偵測到矛盾：

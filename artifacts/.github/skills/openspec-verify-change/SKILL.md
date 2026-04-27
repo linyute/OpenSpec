@@ -6,7 +6,7 @@ compatibility: 需要 openspec CLI。
 metadata:
   author: openspec
   version: "1.0"
-  generatedBy: "1.3.0"
+  generatedBy: "1.3.1"
 ---
 
 驗證實作是否符合變更成品（規格、任務、設計）。
@@ -39,7 +39,7 @@ metadata:
    openspec instructions apply --change "<name>" --json
    ```
 
-   這會回傳變更目錄和上下文檔案。從 `contextFiles` 讀取所有可用的成品。
+   這會回傳變更目錄和 `contextFiles`（artifact ID -> 具體檔案路徑的陣列）。請從 `contextFiles` 讀取所有可用的產物檔案。
 
 4. **初始化驗證報告結構**
 
@@ -53,7 +53,7 @@ metadata:
 5. **驗證完整性**
 
    **任務完成情況**：
-   - 如果 `contextFiles` 中存在 `tasks.md`，請讀取它
+   - 如果存在 `contextFiles.tasks`，請讀取其中的每個檔案路徑
    - 解析核取方塊：`- [ ]`（未完成）與 `- [x]`（已完成）
    - 計算已完成與總任務數
    - 如果存在未完成任務：
@@ -92,7 +92,7 @@ metadata:
 7. **驗證一致性**
 
    **設計遵循程度**：
-   - 如果 `contextFiles` 中存在 `design.md`：
+   - 如果 `contextFiles.design` 存在：
      - 擷取關鍵決定（尋找如「Decision:」、「Approach:」、「Architecture:」等區段）
      - 驗證實作是否遵循這些決定
      - 如果偵測到矛盾：

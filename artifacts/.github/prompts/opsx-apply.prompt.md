@@ -32,7 +32,7 @@ description: 實作 OpenSpec 變更中的任務（實驗性）
    ```
 
    這會傳回：
-   - 上下文檔案路徑（視結構定義而定）
+   - `contextFiles`：artifact ID -> 具體檔案路徑陣列（依 schema 而異）
    - 進度（總計、已完成、剩餘）
    - 帶有狀態的任務清單
    - 基於當前狀態的動態指示
@@ -44,10 +44,10 @@ description: 實作 OpenSpec 變更中的任務（實驗性）
 
 4. **讀取上下文檔案**
 
-   讀取實作指示輸出中 `contextFiles` 列表所列的檔案。
+   讀取實作指示輸出中 `contextFiles` 所列的每個檔案路徑。
    檔案內容取決於所使用的結構定義 (schema)：
-   - **規格驅動型 (spec-driven)**：proposal (提案)、specs (規格)、design (設計)、tasks (任務)
-   - 其他結構定義：遵循 CLI 輸出中的 contextFiles
+   - **規格驅動型（spec-driven）**：proposal（提案）、specs（規格）、design（設計）、tasks（任務）
+   - 其他結構定義：遵循 CLI 輸出中的 `contextFiles`
 
 5. **顯示當前進度**
 
