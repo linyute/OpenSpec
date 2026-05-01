@@ -618,6 +618,7 @@ AI：歡迎來到 OpenSpec！
 | Cursor        | `/opsx-propose`, `/opsx-apply`                                                                  |
 | Windsurf      | `/opsx-propose`, `/opsx-apply`                                                                  |
 | Copilot (IDE) | `/opsx-propose`, `/opsx-apply`                                                                  |
+| Kimi CLI      | 以技能為基礎的呼叫，如 `/skill:openspec-propose`, `/skill:openspec-apply-change` (不生成 `opsx-*` 命令檔案) |
 | Trae          | 以技能為基礎的呼叫，如 `/openspec-propose`, `/openspec-apply-change` (不生成 `opsx-*` 命令檔案) |
 
 各工具的意圖相同，但命令顯示方式可能因整合而異。
